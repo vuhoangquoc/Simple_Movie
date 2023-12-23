@@ -5,16 +5,17 @@ import { fetcher } from "../../config";
 import useSWR from "swr";
 
 const MovieList = ({ type = "now_playing" }) => {
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   const { data, error, isLoading } = useSWR(
     `https://api.themoviedb.org/3/movie/${type}?api_key=3baa5adb9c648772e5f77b58bc88bc89`,
     fetcher
   );
-  useEffect(() => {
-    if (data?.results) {
-      setMovies(data.results);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data?.results) {
+  //     setMovies(data.results);
+  //   }
+  // }, [data]);
+  const movies = data?.results || [];
   return (
     <div className="movie-list">
       <Swiper grabCursor={"true"} spaceBetween={40} slidesPerView={"auto"}>
